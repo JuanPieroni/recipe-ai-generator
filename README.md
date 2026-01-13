@@ -81,11 +81,11 @@ npm start
 
 ```
 recipe-ai-generator/
-├── .amazonq/rules/          # Reglas locales de Amazon Q
 ├── frontend/                # Aplicación React
 ├── backend/                 # API Node.js + Express
 ├── docs/                    # Documentación adicional
 └── README.md               # Este archivo
+ 
 ```
 
 ## 🎨 Capturas de Pantalla
@@ -106,7 +106,7 @@ Soy un desarrollador Full Stack especializado en **AI Integration**, enfocado en
 
 **Tecnologías:** JavaScript, React, Node.js, OpenAI API, AWS
 
-**Contacto:** [Tu email] | [Tu LinkedIn] | [Tu GitHub]
+**Contacto:**  
 
 ## 📄 Licencia
 
