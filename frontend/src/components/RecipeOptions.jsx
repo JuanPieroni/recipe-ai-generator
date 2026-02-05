@@ -1,10 +1,18 @@
 import { useState } from "react"
 
-const RecipeOptions = () => {
+const RecipeOptions = ({ onOptionsChange }) => {
   const [ cuisine, setCuisine ] = useState("casera")
   const [ servings, setServings ] = useState(2)
   const [ time, setTime ] = useState("medio")
 
+  const handleOptionChange = (field, value) => {
+    const newOptions = {
+      cuisine: field === "cuisine" ? value : cuisine,
+      servings: field === "servings" ? value : servings,
+      time: field === "time" ? value : time,
+    }
+    onOptionsChange(newOptions)
+  }
   return (
     <>
       <div>
@@ -16,7 +24,10 @@ const RecipeOptions = () => {
             name="cuisine"
             id="cuisine"
             value={cuisine}
-            onChange={(e) => setCuisine(e.target.value)}
+            onChange={(e) => {
+              setCuisine(e.target.value)
+              handleOptionChange("cuisine", e.target.value)
+            }}
           >
             <option value="casera">Casera</option>
             <option value="italiana">Italiana</option>
@@ -34,7 +45,10 @@ const RecipeOptions = () => {
             name="servings"
             id="servings"
             value={servings}
-            onChange={(e) => setServings(Number(e.target.value))}
+            onChange={(e) => {
+              handleOptionChange("servings", Number(e.target.value))
+              setServings(Number(e.target.value))
+            }}
           >
             <option value={1}>1</option>
             <option value={2}>2</option>
@@ -51,13 +65,17 @@ const RecipeOptions = () => {
             name="time"
             id="time"
             value={time}
-            onChange={(e) => setTime(e.target.value)}
+            onChange={(e) => {
+              handleOptionChange("time", e.target.value)
+              setTime(e.target.value)
+            }}
           >
-            <option value="express">Express (Menos de 15 min.)</option>
-            <option value="rapido" >Rápido(Menos de 30 min.)</option>
-            <option value="medio" >Medio(30-60 min.)</option>
-            <option value="lento" >Lento(Mas de 60 min.)</option>
-
+            <option value="express">
+              Express (Menos de 15 min.)
+            </option>
+            <option value="rapido">Rápido(Menos de 30 min.)</option>
+            <option value="medio">Medio(30-60 min.)</option>
+            <option value="lento">Lento(Mas de 60 min.)</option>
           </select>
         </label>
       </div>

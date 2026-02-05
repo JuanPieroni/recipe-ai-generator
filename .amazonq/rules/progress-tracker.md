@@ -2,10 +2,10 @@
 
 ## Estado Actual: FASE 1 - FRONTEND BASE
 **Fecha:** Enero 2025
-**Progreso:** 60%
+**Progreso:** 85%
 
 ## 🎯 Componentes Creados
-- ✅ IngredientForm - Agregar/eliminar ingredientes
+- ✅ IngredientForm - Agregar/eliminar ingredientes (con Enter y validaciones)
 - ✅ RecipeOptions - Tipo cocina, personas, tiempo
 - ✅ RecipeDisplay - Mostrar receta generada
 - ⏳ FavoritesList - Pendiente
@@ -24,9 +24,12 @@
 - [x] Formulario de ingredientes (agregar/eliminar)
 - [x] Opciones de receta (cocina, personas, tiempo)
 - [x] Interfaz para mostrar recetas (RecipeDisplay)
-- [ ] Conectar opciones con generación de recetas
+- [x] Conectar opciones con generación de recetas
+- [x] Funcionalidad Enter para agregar ingredientes
+- [x] Validaciones y feedback (botón deshabilitado, mensajes)
+- [x] Estado de carga (loading)
 - [ ] CSS básico y responsive
-- [ ] Funcionalidad Enter para agregar ingredientes
+- [ ] FavoritesList component (opcional)
 
 ### ⏳ Fase 2: Backend y API (PENDIENTE)
 - [ ] Setup Node.js + Express
@@ -56,12 +59,14 @@
 6. **Props para comunicación** - Context API para después si crece
 7. **Input flexible para ingredientes** - Usuario puede poner "pollo" o "500g pollo"
 8. **Opciones de personalización** - Tipo cocina, personas, tiempo
+9. **Validaciones UX** - Botón deshabilitado, mensajes de ayuda, estado de carga
+10. **Enter para agregar** - Mejor experiencia de usuario
 
 ## Próximos Pasos
-1. Conectar RecipeOptions con generación de recetas
-2. Agregar funcionalidad Enter para agregar ingredientes
-3. Implementar estilos CSS modernos
-4. Crear componente FavoritesList
+1. **CSS y estilos** - Hacer la app visualmente atractiva y responsive
+2. **FavoritesList** (opcional) - Guardar recetas en localStorage
+3. **Backend (Fase 2)** - Setup Node.js + Express + OpenAI API
+4. **Integración** - Conectar frontend con backend real
 
 ## Notas Importantes
 - Documentar cada decisión importante
