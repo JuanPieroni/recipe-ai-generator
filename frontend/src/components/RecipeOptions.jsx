@@ -54,7 +54,7 @@ const RecipeOptions = () => {
             onChange={(e) => setTime(e.target.value)}
           >
             <option value="express">Express (Menos de 15 min.)</option>
-            <option value="rapido" >Rapido(Menos de 30 min.)</option>
+            <option value="rapido" >Rápido(Menos de 30 min.)</option>
             <option value="medio" >Medio(30-60 min.)</option>
             <option value="lento" >Lento(Mas de 60 min.)</option>
 
