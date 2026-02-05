@@ -1,8 +1,8 @@
 # Progress Tracker - AI Recipe Generator
 
-## Estado Actual: FASE 1 - FRONTEND BASE
+## Estado Actual: FASE 2 - BACKEND Y API
 **Fecha:** Enero 2025
-**Progreso:** 85%
+**Progreso:** 30%
 
 ## 🎯 Componentes Creados
 - ✅ IngredientForm - Agregar/eliminar ingredientes (con Enter y validaciones)
@@ -18,7 +18,7 @@
 - [x] Definir stack técnico
 - [x] Crear reglas locales de Amazon Q
 
-### 🔄 Fase 1: Frontend Base (EN PROGRESO)
+### ✅ Fase 1: Frontend Base (COMPLETADO)
 - [x] Setup React app (Vite)
 - [x] Crear componentes básicos
 - [x] Formulario de ingredientes (agregar/eliminar)
@@ -28,13 +28,17 @@
 - [x] Funcionalidad Enter para agregar ingredientes
 - [x] Validaciones y feedback (botón deshabilitado, mensajes)
 - [x] Estado de carga (loading)
-- [ ] CSS básico y responsive
+- [ ] CSS básico y responsive (dejado para después)
 - [ ] FavoritesList component (opcional)
 
-### ⏳ Fase 2: Backend y API (PENDIENTE)
-- [ ] Setup Node.js + Express
+### 🔄 Fase 2: Backend y API (EN PROGRESO)
+- [x] Setup Node.js + Express
+- [x] Estructura por capas (routes, controllers, services, config)
+- [x] Configurar variables de entorno (.env)
+- [x] Crear endpoint POST /api/recipes/generate
+- [x] Crear servicio en frontend (recipeService.js)
 - [ ] Configurar OpenAI API
-- [ ] Crear endpoint para generar recetas
+- [ ] Conectar frontend con backend
 - [ ] Manejo de errores
 - [ ] Testing básico
 
@@ -43,6 +47,9 @@
 - [ ] Implementar localStorage
 - [ ] Optimizar prompts de IA
 - [ ] Mejorar UX/UI
+- [ ] Agregar rutas CRUD para favoritas (GET, POST, DELETE)
+- [ ] Sistema de autenticación (register, login)
+- [ ] Historial de recetas generadas
 
 ### ⏳ Fase 4: Deploy y Documentación (PENDIENTE)
 - [ ] Deploy frontend (Netlify)
@@ -61,12 +68,15 @@
 8. **Opciones de personalización** - Tipo cocina, personas, tiempo
 9. **Validaciones UX** - Botón deshabilitado, mensajes de ayuda, estado de carga
 10. **Enter para agregar** - Mejor experiencia de usuario
+11. **Backend por capas** - Arquitectura escalable (routes, controllers, services, config)
+12. **ES Modules** - import/export en backend ("type": "module")
+13. **Estilos al final** - Funcionalidad primero, CSS en ramas separadas después
 
 ## Próximos Pasos
-1. **CSS y estilos** - Hacer la app visualmente atractiva y responsive
-2. **FavoritesList** (opcional) - Guardar recetas en localStorage
-3. **Backend (Fase 2)** - Setup Node.js + Express + OpenAI API
-4. **Integración** - Conectar frontend con backend real
+1. **Conectar frontend con backend** - Modificar App.jsx para usar recipeService
+2. **Configurar OpenAI API** - Crear openaiService.js y conectar con GPT
+3. **Optimizar prompts** - Generar recetas de calidad con contexto
+4. **CSS y estilos** (después) - Ramas con diferentes librerías (CSS vanilla, Tailwind, etc)
 
 ## Notas Importantes
 - Documentar cada decisión importante
