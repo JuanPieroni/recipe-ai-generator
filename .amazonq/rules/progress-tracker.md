@@ -2,7 +2,7 @@
 
 ## Estado Actual: FASE 2 - BACKEND Y API
 **Fecha:** Enero 2025
-**Progreso:** 30%
+**Progreso:** 70%
 
 ## 🎯 Componentes Creados
 - ✅ IngredientForm - Agregar/eliminar ingredientes (con Enter y validaciones)
@@ -37,9 +37,10 @@
 - [x] Configurar variables de entorno (.env)
 - [x] Crear endpoint POST /api/recipes/generate
 - [x] Crear servicio en frontend (recipeService.js)
-- [ ] Configurar OpenAI API
-- [ ] Conectar frontend con backend
-- [ ] Manejo de errores
+- [x] Configurar OpenAI service (listo, pendiente créditos)
+- [x] Conectar frontend con backend
+- [ ] Activar OpenAI API (requiere tarjeta de crédito)
+- [ ] Manejo de errores mejorado
 - [ ] Testing básico
 
 ### ⏳ Fase 3: Integración (PENDIENTE)
@@ -73,16 +74,24 @@
 13. **Estilos al final** - Funcionalidad primero, CSS en ramas separadas después
 
 ## Próximos Pasos
-1. **Conectar frontend con backend** - Modificar App.jsx para usar recipeService
-2. **Configurar OpenAI API** - Crear openaiService.js y conectar con GPT
-3. **Optimizar prompts** - Generar recetas de calidad con contexto
-4. **CSS y estilos** (después) - Ramas con diferentes librerías (CSS vanilla, Tailwind, etc)
+1. **Activar OpenAI API** - Requiere tarjeta de crédito ($5 gratis con nueva cuenta)
+2. **Optimizar prompts** - Mejorar calidad de recetas generadas
+3. **FavoritesList component** - Guardar recetas en localStorage
+4. **CSS y estilos** - Ramas con diferentes librerías (CSS vanilla, Tailwind, etc)
 
 ## Notas Importantes
 - Documentar cada decisión importante
 - Commits frecuentes y descriptivos
 - Código comentado para futuras referencias
 - Enfoque en funcionalidad antes que diseño perfecto
+
+## 💳 OpenAI API - Créditos
+- **Estado:** Servicio configurado, pendiente activación
+- **Requiere:** Tarjeta de crédito para verificación
+- **Créditos gratis:** $5 USD con cuenta nueva (suficiente para ~3,500 recetas)
+- **Costo por receta:** ~$0.0014 USD (menos de 1 centavo)
+- **Alternativa temporal:** Mock data en backend hasta conseguir créditos
+- **Modelo:** gpt-3.5-turbo (rápido y económico)
 
 ## Mejoras Futuras a Considerar
 - [ ] Sistema de cantidades inteligente ("3 huevos" o solo "huevos")
