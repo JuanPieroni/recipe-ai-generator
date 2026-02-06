@@ -43,20 +43,36 @@
 - [ ] Manejo de errores mejorado
 - [ ] Testing básico
 
-### ⏳ Fase 3: Integración (PENDIENTE)
-- [ ] Conectar frontend con backend
-- [ ] Implementar localStorage
-- [ ] Optimizar prompts de IA
-- [ ] Mejorar UX/UI
-- [ ] Agregar rutas CRUD para favoritas (GET, POST, DELETE)
-- [ ] Sistema de autenticación (register, login)
-- [ ] Historial de recetas generadas
+### ⏳ Fase 3: Routing y Páginas (PENDIENTE)
+- [ ] Instalar React Router
+- [ ] Crear páginas (Home/Landing, Generator, Favorites, Profile, Login)
+- [ ] Navegación entre páginas
+- [ ] Layout común (Header, Footer)
+- [ ] Rutas protegidas (requieren login)
 
-### ⏳ Fase 4: Deploy y Documentación (PENDIENTE)
+### ⏳ Fase 4: Autenticación y Base de Datos (PENDIENTE)
+- [ ] Setup MongoDB
+- [ ] Modelo de Usuario (schema)
+- [ ] Endpoints de autenticación (register, login)
+- [ ] JWT tokens
+- [ ] Middleware de protección de rutas
+- [ ] OAuth con Google
+- [ ] OAuth con GitHub
+- [ ] Guardar favoritas en BD (no localStorage)
+
+### ⏳ Fase 5: Features con Usuarios (PENDIENTE)
+- [ ] Profile page editable
+- [ ] Historial de recetas por usuario
+- [ ] Compartir recetas entre usuarios
+- [ ] Sistema de ratings/comentarios
+
+### ⏳ Fase 6: Deploy y Documentación (PENDIENTE)
 - [ ] Deploy frontend (Netlify)
 - [ ] Deploy backend (Railway/Render)
+- [ ] Configurar variables de entorno en producción
 - [ ] README completo
 - [ ] Documentación para portfolio
+- [ ] Screenshots y demo video
 
 ## Decisiones Técnicas Tomadas
 1. **JavaScript puro** - No TypeScript por nivel del desarrollador
@@ -74,10 +90,11 @@
 13. **Estilos al final** - Funcionalidad primero, CSS en ramas separadas después
 
 ## Próximos Pasos
-1. **Activar OpenAI API** - Requiere tarjeta de crédito ($5 gratis con nueva cuenta)
-2. **Optimizar prompts** - Mejorar calidad de recetas generadas
-3. **FavoritesList component** - Guardar recetas en localStorage
-4. **CSS y estilos** - Ramas con diferentes librerías (CSS vanilla, Tailwind, etc)
+1. **React Router** - Crear múltiples páginas (Home, Generator, Favorites, Profile, Login)
+2. **Activar OpenAI API** - Requiere tarjeta de crédito ($5 gratis con nueva cuenta)
+3. **MongoDB + Autenticación** - Sistema de usuarios con JWT
+4. **OAuth** - Login con Google y GitHub
+5. **CSS y estilos** - Ramas con diferentes librerías (CSS vanilla, Tailwind, etc)
 
 ## Notas Importantes
 - Documentar cada decisión importante
@@ -96,11 +113,12 @@
 ## Mejoras Futuras a Considerar
 - [ ] Sistema de cantidades inteligente ("3 huevos" o solo "huevos")
 - [ ] Separar ingredientes principales de condimentos (mejor UX para principiantes)
-- [ ] Context API cuando la app crezca (autenticación, estado global)
+- [ ] Context API para estado global (usuario, autenticación)
 - [ ] Tailwind CSS para estilos modernos
-- [ ] Integración con MongoDB
-- [ ] Sistema de usuarios y autenticación
 - [ ] Compartir recetas en redes sociales
 - [ ] Generación de imágenes con DALL-E
 - [ ] Calculadora nutricional
 - [ ] Restricciones dietéticas (vegetariano, vegano, sin gluten)
+- [ ] Sistema de ratings y comentarios
+- [ ] Búsqueda y filtros de recetas
+- [ ] Modo offline (PWA)
