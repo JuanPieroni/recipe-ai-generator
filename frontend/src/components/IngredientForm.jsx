@@ -1,9 +1,8 @@
 import { useState } from "react"
-import { Plus, X, Flame, Carrot } from "lucide-react"
+import { Plus, X, Carrot } from "lucide-react"
 import styles from "../styles/IngredientForm.module.css"
 
-const IngredientForm = ({ onGenerateRecipe }) => {
-    const [ingredients, setIngredients] = useState([])
+const IngredientForm = ({ ingredients, setIngredients }) => {
     const [currentInput, setCurrentInput] = useState("")
 
     const handleAddIngredient = () => {
@@ -17,12 +16,6 @@ const IngredientForm = ({ onGenerateRecipe }) => {
         setIngredients(
             ingredients.filter((_, index) => index !== indexToRemove),
         )
-    }
-
-    const handleGenerateRecipe = () => {
-        if (ingredients.length > 0) {
-            onGenerateRecipe(ingredients)
-        }
     }
 
     return (
@@ -86,14 +79,7 @@ const IngredientForm = ({ onGenerateRecipe }) => {
                 </ul>
             )}
 
-            <button
-                onClick={handleGenerateRecipe}
-                disabled={ingredients.length === 0}
-                className={styles.generateButton}
-            >
-                <Flame className={styles.generateIcon} />
-                Generar Receta
-            </button>
+
         </div>
     )
 }

@@ -1,18 +1,21 @@
 import { useState } from "react"
-import { CookingPot } from "lucide-react"
+import { CookingPot, Brain, Sparkles } from "lucide-react"
 import IngredientForm from "../src/components/IngredientForm"
 import RecipeOptions from "../src/components/RecipeOptions"
+import GenerateButton from "../src/components/GenerateButton"
 import RecipeDisplay from "../src/components/RecipeDisplay"
 import { generateRecipeFromAPI } from "../services/front.recipe.service.js"
 import styles from "../src/styles/Generator.module.css"
 
 const Generator = () => {
+    const [ingredients, setIngredients] = useState([])
     const [recipe, setRecipe] = useState(null)
     const [loading, setLoading] = useState(false)
     const [options, setOptions] = useState({
         cuisine: "casera",
         servings: 2,
         time: "medio",
+        variation: false,
     })
 
     const handleGenerateRecipe = async (ingredients) => {
@@ -36,6 +39,25 @@ const Generator = () => {
         }
     }
 
+    const handleTryAnother = async () => {
+        console.log("Generando variación de receta...")
+        setLoading(true)
+        setRecipe(null)
+
+        try {
+            const generatedRecipe = await generateRecipeFromAPI(
+                ingredients,
+                { ...options, variation: true }
+            )
+            setRecipe(generatedRecipe)
+        } catch (error) {
+            console.error("Error al generar variación:", error)
+            alert("Error al generar otra receta. Inténtalo de nuevo.")
+        } finally {
+            setLoading(false)
+        }
+    }
+
     return (
         <div className={styles.generator}>
             <h1 className={styles.pageTitle}>
@@ -45,22 +67,40 @@ const Generator = () => {
 
             <div className={styles.content}>
                 <div className={styles.formSection}>
-                    <IngredientForm onGenerateRecipe={handleGenerateRecipe} />
+                    <IngredientForm
+                        ingredients={ingredients}
+                        setIngredients={setIngredients}
+                    />
                     <RecipeOptions onOptionsChange={setOptions} />
+                    <GenerateButton
+                        ingredients={ingredients}
+                        onGenerateRecipe={handleGenerateRecipe}
+                    />
                 </div>
 
                 {loading && (
                     <div className={styles.loadingState}>
-                        <div className={styles.spinner}></div>
+                        <div className={styles.spinnerContainer}>
+                            <Brain className={styles.brainIcon} />
+                            <Sparkles className={styles.sparkle1} />
+                            <Sparkles className={styles.sparkle2} />
+                            <Sparkles className={styles.sparkle3} />
+                        </div>
                         <p className={styles.loadingText}>
-                            Generando tu receta... 🍳⏳
+                            Pensando la receta perfecta...
+                        </p>
+                        <p className={styles.loadingSubtext}>
+                            La IA está procesando tus ingredientes 🧠✨
                         </p>
                     </div>
                 )}
 
                 {!loading && recipe && (
                     <div className={styles.resultSection}>
-                        <RecipeDisplay recipe={recipe} />
+                        <RecipeDisplay 
+                            recipe={recipe} 
+                            onTryAnother={handleTryAnother}
+                        />
                     </div>
                 )}
             </div>

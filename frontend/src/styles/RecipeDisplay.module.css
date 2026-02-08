@@ -178,6 +178,18 @@
   box-shadow: var(--shadow-md);
 }
 
+.tryAnotherButton {
+  background: linear-gradient(135deg, #9333ea, #7c3aed);
+  color: var(--color-white);
+  border: none;
+}
+
+.tryAnotherButton:hover {
+  background: linear-gradient(135deg, #7c3aed, #6d28d9);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
 /* ===================================
    RESPONSIVE
    =================================== */

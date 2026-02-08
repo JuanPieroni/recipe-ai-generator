@@ -8,14 +8,19 @@ const ai = new GoogleGenAI({
 
 export const generateRecipeWithGemini = async (ingredients, options) => {
     try {
-        // Construir el prompt
-        const prompt = `
-Eres un chef experto. Genera una receta detallada con los siguientes ingredientes y opciones:
+        // Determinar si es una variación
+        const isVariation = options.variation === true;
+        
+        // Construir el prompt base
+        let prompt = `
+Eres un chef experto. Genera una receta ${isVariation ? 'DIFERENTE y CREATIVA' : 'detallada'} con los siguientes ingredientes y opciones:
 
 Ingredientes disponibles: ${ingredients.join(', ')}
 Tipo de cocina: ${options.cuisine}
 Para: ${options.servings} personas
 Tiempo disponible: ${options.time}
+
+${isVariation ? 'IMPORTANTE: Crea una receta COMPLETAMENTE DIFERENTE a las anteriores. Usa técnicas de cocción distintas, combinaciones creativas y presentación única.' : ''}
 
 Genera una receta en formato JSON con esta estructura exacta:
 {

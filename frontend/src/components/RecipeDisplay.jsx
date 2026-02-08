@@ -1,7 +1,7 @@
-import { Clock, ChefHat, CheckCircle, Bookmark, Share2 } from "lucide-react"
+import { Clock, ChefHat, CheckCircle, Bookmark, Share2, Shuffle } from "lucide-react"
 import styles from "../styles/RecipeDisplay.module.css"
 
-const RecipeDisplay = ({ recipe }) => {
+const RecipeDisplay = ({ recipe, onTryAnother }) => {
     if (!recipe) {
         return null
     }
@@ -77,6 +77,13 @@ const RecipeDisplay = ({ recipe }) => {
                 >
                     <Share2 size={20} />
                     Compartir
+                </button>
+                <button
+                    onClick={onTryAnother}
+                    className={`${styles.actionButton} ${styles.tryAnotherButton}`}
+                >
+                    <Shuffle size={20} />
+                    ¿Otra receta?
                 </button>
             </div>
         </div>
