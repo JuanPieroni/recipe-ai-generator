@@ -1,14 +1,12 @@
 import { useState } from "react"
+import { CookingPot } from "lucide-react"
 import IngredientForm from "../src/components/IngredientForm"
 import RecipeOptions from "../src/components/RecipeOptions"
 import RecipeDisplay from "../src/components/RecipeDisplay"
 import { generateRecipeFromAPI } from "../services/front.recipe.service.js"
-// import {mockRecipe} from '../src/mocks/recipeData.js'
-
-
+import styles from "../src/styles/Generator.module.css"
 
 const Generator = () => {
-    //guarda receta actual
     const [recipe, setRecipe] = useState(null)
     const [loading, setLoading] = useState(false)
     const [options, setOptions] = useState({
@@ -16,23 +14,14 @@ const Generator = () => {
         servings: 2,
         time: "medio",
     })
-    // se ejecuta cuando se genere la receta
+
     const handleGenerateRecipe = async (ingredients) => {
-        // logica para generar receta
         console.log("Ingredientes recibidos:", ingredients)
         console.log("Opciones:", options)
 
-        //simula carga
         setLoading(true)
-        setRecipe(null) // limpia la previa
+        setRecipe(null)
 
-        // Simular llamada API
-        // setTimeout(() => {
-        //     setRecipe(mockRecipe)
-        //     setLoading(false)
-        // }, 1500)
-
-        //Llamada real al backend
         try {
             const generatedRecipe = await generateRecipeFromAPI(
                 ingredients,
@@ -48,20 +37,34 @@ const Generator = () => {
     }
 
     return (
-        <>
-            <div>
-                <h1>Recipe AI Generator</h1>
-                <IngredientForm onGenerateRecipe={handleGenerateRecipe} />
-                <RecipeOptions onOptionsChange={setOptions} />
+        <div className={styles.generator}>
+            <h1 className={styles.pageTitle}>
+                <CookingPot className={styles.titleIcon} />
+                Recipe AI Generator
+            </h1>
+
+            <div className={styles.content}>
+                <div className={styles.formSection}>
+                    <IngredientForm onGenerateRecipe={handleGenerateRecipe} />
+                    <RecipeOptions onOptionsChange={setOptions} />
+                </div>
 
                 {loading && (
-                    <div style={{ textAlign: "center", padding: "20px" }}>
-                        <p>Generando tu receta... 🍳⏳</p>
+                    <div className={styles.loadingState}>
+                        <div className={styles.spinner}></div>
+                        <p className={styles.loadingText}>
+                            Generando tu receta... 🍳⏳
+                        </p>
                     </div>
                 )}
-                {!loading && <RecipeDisplay recipe={recipe} />}
+
+                {!loading && recipe && (
+                    <div className={styles.resultSection}>
+                        <RecipeDisplay recipe={recipe} />
+                    </div>
+                )}
             </div>
-        </>
+        </div>
     )
 }
 

@@ -1,34 +1,86 @@
-
+import { Clock, ChefHat, CheckCircle, Bookmark, Share2 } from "lucide-react"
+import styles from "../styles/RecipeDisplay.module.css"
 
 const RecipeDisplay = ({ recipe }) => {
+    if (!recipe) {
+        return null
+    }
 
-  if (!recipe) {
-    return null
-  }
-  return (
-    <>
-      <div>
-        <h2>{recipe.title}</h2>
+    const handleSave = () => {
+        alert("Funcionalidad de guardar próximamente!")
+    }
 
-        <p>⏱️ Tiempo: {recipe.time}</p>
-        <p>📊 Dificultad: {recipe.difficulty}</p>
+    const handleShare = () => {
+        alert("Funcionalidad de compartir próximamente!")
+    }
 
-        <h3>Ingredientes:</h3>
-        <ul>
-          {recipe.ingredients.map((ingredient, index) => (
-            <li key={index}>{ingredient}</li>
-          ))}
-        </ul>
+    return (
+        <div className={styles.recipeCard}>
+            <div className={styles.header}>
+                <h2 className={styles.title}>{recipe.title}</h2>
 
-        <h3>Pasos:</h3>
-        <ol>
-          {recipe.steps.map((step, index) => (
-            <li key={index}>{step}</li>
-          ))}
-        </ol>
-      </div>
-    </>
-  )
+                <div className={styles.metadata}>
+                    <div className={styles.metaItem}>
+                        <Clock size={20} />
+                        {recipe.time}
+                    </div>
+                    <div className={styles.metaItem}>
+                        <ChefHat size={20} />
+                        {recipe.difficulty}
+                    </div>
+                </div>
+            </div>
+
+            <div className={styles.section}>
+                <h3 className={styles.sectionTitle}>
+                    <CheckCircle className={styles.sectionIcon} />
+                    Ingredientes
+                </h3>
+                <ul className={styles.ingredientsList}>
+                    {recipe.ingredients.map((ingredient, index) => (
+                        <li key={index} className={styles.ingredientItem}>
+                            <CheckCircle
+                                className={styles.ingredientIcon}
+                                size={20}
+                            />
+                            {ingredient}
+                        </li>
+                    ))}
+                </ul>
+            </div>
+
+            <div className={styles.section}>
+                <h3 className={styles.sectionTitle}>
+                    <ChefHat className={styles.sectionIcon} />
+                    Pasos de Preparación
+                </h3>
+                <ol className={styles.stepsList}>
+                    {recipe.steps.map((step, index) => (
+                        <li key={index} className={styles.stepItem}>
+                            {step}
+                        </li>
+                    ))}
+                </ol>
+            </div>
+
+            <div className={styles.actions}>
+                <button
+                    onClick={handleSave}
+                    className={`${styles.actionButton} ${styles.saveButton}`}
+                >
+                    <Bookmark size={20} />
+                    Guardar Receta
+                </button>
+                <button
+                    onClick={handleShare}
+                    className={`${styles.actionButton} ${styles.shareButton}`}
+                >
+                    <Share2 size={20} />
+                    Compartir
+                </button>
+            </div>
+        </div>
+    )
 }
 
 export default RecipeDisplay

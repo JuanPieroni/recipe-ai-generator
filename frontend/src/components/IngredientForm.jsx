@@ -1,4 +1,6 @@
 import { useState } from "react"
+import { Plus, X, Flame, Carrot } from "lucide-react"
+import styles from "../styles/IngredientForm.module.css"
 
 const IngredientForm = ({ onGenerateRecipe }) => {
     const [ingredients, setIngredients] = useState([])
@@ -6,13 +8,15 @@ const IngredientForm = ({ onGenerateRecipe }) => {
 
     const handleAddIngredient = () => {
         if (currentInput.trim() !== "") {
-            setIngredients([...ingredients, currentInput])
+            setIngredients([...ingredients, currentInput.trim()])
             setCurrentInput("")
         }
     }
 
     const handleRemoveIngredient = (indexToRemove) => {
-        setIngredients(ingredients.filter((_, index) => index !== indexToRemove))
+        setIngredients(
+            ingredients.filter((_, index) => index !== indexToRemove),
+        )
     }
 
     const handleGenerateRecipe = () => {
@@ -22,51 +26,73 @@ const IngredientForm = ({ onGenerateRecipe }) => {
     }
 
     return (
-        <div>
-            <h2>¿Qué ingredientes tienes?</h2>
-            
-            <input 
-                type="text"
-                value={currentInput}
-                onChange={(e) => setCurrentInput(e.target.value)}
-                onKeyDown={(e) => {
-                    if (e.key === "Enter") {
-                        handleAddIngredient()
-                    }
-                }}
-                placeholder="Ej: pollo, arroz, tomate"
-            />
-            
-            <button onClick={handleAddIngredient}>Agregar</button>
-            
-            <p>Ingredientes: {ingredients.length}</p>
-            
-            <ul>
-                {ingredients.map((ingredient, index) => (
-                    <li key={index}>
-                        {ingredient}
-                        <button onClick={() => handleRemoveIngredient(index)}>X</button>
-                    </li>
-                ))}
-            </ul>
+        <div className={styles.ingredientForm}>
+            <h2 className={styles.title}>
+                <Carrot className={styles.titleIcon} />
+                ¿Qué ingredientes tienes?
+            </h2>
 
-            {/* Mensaje si no hay ingredientes */}
-            {ingredients.length === 0 && (
-                <p style={{color: "gray", fontSize: "14px"}}>
+            <div className={styles.inputGroup}>
+                <input
+                    type="text"
+                    value={currentInput}
+                    onChange={(e) => setCurrentInput(e.target.value)}
+                    onKeyDown={(e) => {
+                        if (e.key === "Enter") {
+                            handleAddIngredient()
+                        }
+                    }}
+                    placeholder="Ej: pollo, arroz, tomate"
+                    className={styles.input}
+                />
+
+                <button
+                    onClick={handleAddIngredient}
+                    className={styles.addButton}
+                >
+                    <Plus size={20} />
+                    Agregar
+                </button>
+            </div>
+
+            <div className={styles.counter}>
+                Ingredientes:{" "}
+                <span className={styles.counterBadge}>
+                    {ingredients.length}
+                </span>
+            </div>
+
+            {ingredients.length === 0 ? (
+                <div className={styles.emptyMessage}>
                     ⬆️ Agrega al menos un ingrediente para generar una receta
-                </p>
+                </div>
+            ) : (
+                <ul className={styles.ingredientsList}>
+                    {ingredients.map((ingredient, index) => (
+                        <li key={index} className={styles.ingredientChip}>
+                            <span className={styles.ingredientName}>
+                                <Carrot className={styles.ingredientIcon} />
+                                {ingredient}
+                            </span>
+                            <button
+                                onClick={() => handleRemoveIngredient(index)}
+                                className={styles.removeButton}
+                                aria-label={`Eliminar ${ingredient}`}
+                            >
+                                <X size={16} />
+                            </button>
+                        </li>
+                    ))}
+                </ul>
             )}
 
-            {/* Botón deshabilitado si no hay ingredientes */}
-            <button 
+            <button
                 onClick={handleGenerateRecipe}
                 disabled={ingredients.length === 0}
-                style={{
-                    opacity: ingredients.length === 0 ? 0.5 : 1,
-                    cursor: ingredients.length === 0 ? "not-allowed" : "pointer"
-                }}
+                className={styles.generateButton}
             >
-                🔥 Generar Receta
+                <Flame className={styles.generateIcon} />
+                Generar Receta
             </button>
         </div>
     )
