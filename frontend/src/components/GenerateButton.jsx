@@ -2,6 +2,7 @@ import { Flame } from "lucide-react"
 import styles from "../styles/GenerateButton.module.css"
 
 const GenerateButton = ({ ingredients, onGenerateRecipe }) => {
+    
     const handleGenerateRecipe = () => {
         if (ingredients.length > 0) {
             onGenerateRecipe(ingredients)
