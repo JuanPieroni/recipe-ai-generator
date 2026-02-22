@@ -22,23 +22,24 @@ const Home = () => {
                     <li className={styles.featureItem}>
                         <div className={styles.featureNumber}>1</div>
                         <p className={styles.featureText}>
-                            Ingresa los ingredientes que tienes disponibles en tu
-                            heladera o alacena
+                            Ingresa los ingredientes que tienes disponibles en
+                            tu heladera o alacena
                         </p>
                     </li>
                     <li className={styles.featureItem}>
                         <div className={styles.featureNumber}>2</div>
                         <p className={styles.featureText}>
-                            El sistema procesará tu solicitud y generará una receta
-                            personalizada utilizando inteligencia artificial.
+                            El sistema procesará tu solicitud y generará una
+                            receta personalizada utilizando inteligencia
+                            artificial.
                         </p>
                     </li>
                     <li className={styles.featureItem}>
                         <div className={styles.featureNumber}>3</div>
                         <p className={styles.featureText}>
                             Recibirás una receta detallada con los pasos para
-                            preparar un plato delicioso utilizando los ingredientes
-                            que tienes a mano.
+                            preparar un plato delicioso utilizando los
+                            ingredientes que tienes a mano.
                         </p>
                     </li>
                 </ol>

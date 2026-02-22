@@ -1,17 +1,46 @@
-import { Clock, ChefHat, CheckCircle, Bookmark, Share2, Shuffle } from "lucide-react"
+import { useState } from "react"
+import {
+    Clock,
+    ChefHat,
+    CheckCircle,
+    Bookmark,
+    Share2,
+    Shuffle,
+} from "lucide-react"
 import styles from "../styles/RecipeDisplay.module.css"
+import { recipeStorage } from "../services/recipeStorage.js"
 
 const RecipeDisplay = ({ recipe, onTryAnother }) => {
+    const [saved, setSaved] = useState(false)
+
     if (!recipe) {
         return null
     }
 
     const handleSave = () => {
-        alert("Funcionalidad de guardar próximamente!")
+        recipeStorage.save(recipe)
+        setSaved(true)
+        setTimeout(() => setSaved(false), 2000)
     }
 
-    const handleShare = () => {
-        alert("Funcionalidad de compartir próximamente!")
+    const handleShare = async () => {
+        const text = recipeStorage.shareAsText(recipe)
+
+        // Intentar usar Web Share API (móvil)
+        if (navigator.share) {
+            try {
+                await navigator.share({
+                    title: recipe.title,
+                    text: text,
+                })
+            } catch (err) {
+                console.log("Share cancelado")
+            }
+        } else {
+            // Fallback: copiar al portapapeles
+            navigator.clipboard.writeText(text)
+            alert("Receta copiada al portapapeles!")
+        }
     }
 
     return (
@@ -67,9 +96,10 @@ const RecipeDisplay = ({ recipe, onTryAnother }) => {
                 <button
                     onClick={handleSave}
                     className={`${styles.actionButton} ${styles.saveButton}`}
+                    style={{ opacity: saved ? 0.7 : 1 }}
                 >
                     <Bookmark size={20} />
-                    Guardar Receta
+                    {saved ? "✓ Guardada" : "Guardar Receta"}
                 </button>
                 <button
                     onClick={handleShare}
