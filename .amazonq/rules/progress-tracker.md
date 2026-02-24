@@ -1,8 +1,8 @@
 # Progress Tracker - AI Recipe Generator
 
-## Estado Actual: FASE 2.5 - FUNCIONALIDADES DE RECETAS
+## Estado Actual: FASE 4 - AUTENTICACIÓN Y BASE DE DATOS
 **Fecha:** Enero 2025
-**Progreso:** 90%
+**Progreso:** 50%
 
 ## 🎯 Componentes Creados
 - ✅ IngredientForm - Agregar/eliminar ingredientes (con Enter y validaciones)
@@ -10,6 +10,8 @@
 - ✅ RecipeDisplay - Mostrar receta generada (con estilos mejorados)
 - ✅ GenerateButton - Botón independiente para generar recetas
 - ✅ Favorites - Mostrar recetas guardadas con opción eliminar
+- ✅ AuthContext - Estado global del usuario
+- ⏳ Login - Página de autenticación (en progreso)
 
 ## Fases del Proyecto
 
@@ -46,34 +48,32 @@
 - [x] Prompt engineering para variaciones de recetas
 - [x] Lazy import de OpenAI (evita errores de credenciales)
 
-### 🔄 Fase 2.5: Funcionalidades de Recetas (EN PROGRESO)
+### ✅ Fase 2.5: Funcionalidades de Recetas (COMPLETADO)
 - [x] Implementar función "Guardar Receta" (localStorage)
 - [x] Implementar función "Compartir Receta" (Web Share API + fallback)
 - [x] Sistema de favoritos local (Favorites page)
 - [x] Servicio recipeStorage.js (guardar, obtener, eliminar, compartir)
 - [x] Feedback visual (botón muestra "✓ Guardada" por 2 segundos)
-- [ ] Historial de recetas generadas (localStorage)
-- [ ] Validación y limpieza de respuestas de IA
-- [ ] Manejo de errores específicos (IA no disponible, formato incorrecto)
 
-### ⏳ Fase 3: Routing y Páginas (PENDIENTE)
+### ✅ Fase 3: Routing y Páginas (COMPLETADO)
 - [x] React Router instalado
 - [x] Páginas creadas (Home, Generator, Favorites, Profile, Login)
 - [x] Navegación entre páginas (Header con links)
-- [ ] Layout común mejorado (Footer)
-- [ ] Rutas protegidas (requieren login)
 
-### ⏳ Fase 4: Autenticación y Base de Datos (PENDIENTE)
-- [ ] Setup MongoDB (Atlas o local)
-- [ ] Modelo de Usuario (schema con Mongoose)
-- [ ] Modelo de Receta (schema para guardar recetas)
-- [ ] Endpoints de autenticación (register, login, logout)
-- [ ] JWT tokens (generación y validación)
-- [ ] Middleware de protección de rutas
-- [ ] Hash de contraseñas (bcrypt)
-- [ ] Validación de datos (express-validator)
-- [ ] OAuth con Google (passport-google-oauth20)
-- [ ] OAuth con GitHub (passport-github2)
+### 🔄 Fase 4: Autenticación y Base de Datos (EN PROGRESO)
+- [x] Setup MongoDB (Atlas)
+- [x] Modelo de Usuario (schema con Mongoose)
+- [x] Modelo de Receta (schema para guardar recetas)
+- [x] Endpoints de autenticación (register, login, google)
+- [x] JWT tokens (generación y validación)
+- [x] Middleware de protección de rutas
+- [x] Hash de contraseñas (bcrypt)
+- [x] Backend conectado y funcionando
+- [x] authService.js (frontend - conecta con backend)
+- [x] AuthContext.jsx (estado global del usuario)
+- [ ] Login page (formulario + Google OAuth)
+- [ ] ProtectedRoute component
+- [ ] Actualizar App.jsx con AuthProvider
 - [ ] Migrar favoritas de localStorage a BD
 - [ ] Endpoints CRUD para recetas guardadas
 
@@ -117,14 +117,19 @@
 18. **recipeStorage service** - Lógica de persistencia separada de componentes
 19. **Web Share API** - Compartir nativo en móvil, fallback a portapapeles
 20. **Lazy import OpenAI** - Evita cargar credenciales innecesarias
+21. **MongoDB Atlas** - Base de datos en la nube, gratuita
+22. **JWT Tokens** - Autenticación stateless y escalable
+23. **Bcrypt** - Hash seguro de contraseñas
+24. **Context API** - Estado global sin Redux
+25. **Convención name.type.js** - Nombres consistentes en backend
 
 ## Próximos Pasos
-1. **Validación de respuestas IA** - Asegurar que siempre devuelva JSON válido
-2. **Manejo de errores mejorado** - Mensajes específicos según tipo de error
-3. **Historial de recetas** - Guardar últimas 10 recetas generadas
-4. **Mejorar Favorites** - Agregar búsqueda y filtros
-5. **MongoDB + Autenticación** - Sistema de usuarios con JWT
-6. **OAuth** - Login con Google y GitHub
+1. **Login page** - Formulario email + password + Google OAuth button
+2. **ProtectedRoute** - Rutas que requieren autenticación
+3. **Actualizar App.jsx** - Envolver con AuthProvider
+4. **Endpoints de recetas** - Guardar/obtener recetas por usuario en BD
+5. **Migrar localStorage a BD** - Mover favoritas a MongoDB
+6. **Validación de respuestas IA** - Asegurar JSON válido
 7. **Deploy** - Frontend (Netlify) + Backend (Railway/Render)
 
 ## Notas Importantes
@@ -132,8 +137,10 @@
 - Commits frecuentes y descriptivos
 - Código comentado para futuras referencias
 - Enfoque en funcionalidad antes que diseño perfecto
-- localStorage es suficiente para MVP sin autenticación
-- Migración a MongoDB será en Fase 4 cuando se implemente login
+- Backend y Frontend se comunican vía HTTP (fetch)
+- Token JWT se guarda en localStorage y se envía en headers
+- AuthContext proporciona estado global a toda la app
+- Usar variable de entorno para API_URL (localhost en dev, URL en prod)
 
 ## 💳 APIs de IA - Estado
 - **Gemini API:** ✅ Funcionando - Gratis hasta 60 req/min
@@ -143,10 +150,15 @@
 - **Alternativa:** gpt-3.5-turbo cuando se active OpenAI
 - **Limitación actual:** Tokens limitados en Gemini (60 req/min)
 
+## 🗄️ MongoDB - Estado
+- **MongoDB Atlas:** ✅ Conectado y funcionando
+- **Base de datos:** recipeAI
+- **Colecciones:** users, recipes
+- **Autenticación:** Usuario SeisDuro con contraseña hasheada
+
 ## Mejoras Futuras a Considerar
 - [ ] Sistema de cantidades inteligente ("3 huevos" o solo "huevos")
 - [ ] Separar ingredientes principales de condimentos (mejor UX para principiantes)
-- [ ] Context API para estado global (usuario, autenticación)
 - [ ] Tailwind CSS para estilos modernos (rama separada)
 - [ ] Compartir recetas en redes sociales
 - [ ] Generación de imágenes con DALL-E
@@ -159,11 +171,11 @@
 - [ ] Sincronización entre dispositivos (después de login)
 
 ## 🎯 Logros Recientes (Última Sesión)
-- ✅ **Guardar Recetas** - localStorage con ID único y fecha
-- ✅ **Compartir Recetas** - Web Share API (móvil) + fallback portapapeles
-- ✅ **Favorites Page** - Mostrar recetas guardadas con opción eliminar
-- ✅ **recipeStorage.js** - Servicio centralizado para gestionar recetas
-- ✅ **Feedback visual** - Botón muestra "✓ Guardada" por 2 segundos
-- ✅ **Estilos Favorites** - Grid responsive con animaciones
-- ✅ **Lazy import OpenAI** - Evita errores cuando se usa Gemini
-- ✅ **Merge CSS a main** - Rama estilos-css integrada y eliminada
+- ✅ **MongoDB Atlas** - Base de datos conectada y funcionando
+- ✅ **Modelos Mongoose** - User y Recipe schemas creados
+- ✅ **Autenticación Backend** - Register, Login, Google OAuth endpoints
+- ✅ **JWT Tokens** - Generación y validación de tokens
+- ✅ **Bcrypt** - Hash seguro de contraseñas
+- ✅ **authService.js** - Servicio para conectar frontend con backend
+- ✅ **AuthContext.jsx** - Estado global del usuario con React Context
+- ✅ **Convención de nombres** - Archivos con patrón name.type.js
